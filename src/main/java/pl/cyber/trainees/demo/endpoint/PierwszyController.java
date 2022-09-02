@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.cyber.trainees.demo.dto.ImieDTO;
+import pl.cyber.trainees.demo.dto.PersonDTO;
 import pl.cyber.trainees.demo.dto.PersonRequest;
 import pl.cyber.trainees.demo.service.PersonService;
 @Slf4j // zamiast sout
@@ -38,6 +39,17 @@ public class PierwszyController {        // zadaniem klasy komunikacja z zewnąt
    // PersonRequest
     // Utworzyć metody REST do tworzenia użytkownika, zmiany jego danych oraz jego pobierania
     // Imie, nazwisko, date urodzenia, miasto zamieszkania, płeć
+    @GetMapping("/person")
+    public PersonDTO getPerson(@RequestBody final PersonRequest request) {
+        return service.getPerson(request);
+    }
+    @PostMapping("/update")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updatePerson(@RequestBody final PersonRequest request) {
+        log.info("Dokonuje aktualizacji Osoby");
+        service.updatePerson(request);
+
+    }
 
 }
 
