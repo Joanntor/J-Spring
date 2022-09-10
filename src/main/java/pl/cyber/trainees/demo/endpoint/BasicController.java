@@ -137,11 +137,11 @@ public class BasicController {
     //zad. 9
     @GetMapping("/rownanie-kwadratowe/{a}/{b}/{c}")
     public String rownanieKwadratowe(
-    @PathVariable("a") final Integer a,
-    @PathVariable("b") final Integer b,
-    @PathVariable("c") final Integer c
-    ){
-        return kalkulatorService.rownanieKwadratowe(a,b,c);
+            @PathVariable("a") final Integer a,
+            @PathVariable("b") final Integer b,
+            @PathVariable("c") final Integer c
+    ) {
+        return kalkulatorService.rownanieKwadratowe(a, b, c);
 
     }
     //1,2,1
@@ -151,17 +151,101 @@ public class BasicController {
     @PostMapping("/rownanie-kwadratowe-b")
     public String rownanieKwadratowe(
             @RequestBody final RownanieKwRequest request
-            ) {
+    ) {
         return kalkulatorService.rownanieKwadratowe(request);
     }
+
     @PostMapping("/rownanie-kwadratowe-b-2miejsca")
     public String rownanieKwadratowe2miejsca(
             @RequestBody final RownanieKwRequest request
     ) {
         return kalkulatorService.rownanieKwadratowe(request);
     }
-}
+
 
 // get - pobieranie danych do geta nie stosujemy @ requestb0dy
 // put  - wkładanie danuch
 // post - aktualizowanie danych
+
+    /*
+    Zadanie 10
+    Za pomocą instrukcji pętli for dla danych wartości x zmieniających się od 0 do 10 obliczymy wartość funkcji y = 3x
+
+     */
+    @GetMapping("/zadanie10a")
+    public String zadanie10a() {
+        return kalkulatorService.zadanie10a();
+    }
+
+    // region zadanie 10b
+    // Za pomocą instrukcji pętli do...while dla danych wartości x zmieniających się od 0 do 10
+    // obliczymy wartość funkcji y = 3x
+
+    @GetMapping("/zadanie10b")
+    public String zadanie10b(){
+        return kalkulatorService.zadanie10b();
+    }
+
+    // region zadanie 10c
+    // Za pomocą instrukcji pętli while dla danych wartości x zmieniających się od 0 do 10
+    // obliczymy wartość funkcji y = 3x
+
+    @GetMapping("/zadanie10c")
+    public String zadanie10c(){
+        return kalkulatorService.zadanie10c();
+
+    }
+
+    // region Zadanie 11a
+    /*
+    Napisać program, który przy pomocy pętli for przekaże nam wyniki tabliczki mnożenia od 1 do 100
+    Potrzebujemy 2 pętle for
+    Parametr 1-10;
+     */
+
+    @GetMapping("/zadanie11a")
+    public String zadanie11a(){
+        return kalkulatorService.zadanie11a();
+
+    }
+    @GetMapping("/zadanie11aa")
+    public String zadanie11aa(){
+        return kalkulatorService.zadanie11aa();
+    }
+
+    // region Zadanie 11b
+    /*
+    Napisać program, który przy pomocy pętli do..while przekaże nam wyniki tabliczki mnożenia od 1 do 100
+    Potrzebujemy 2 pętle do... while
+    do {
+    //ustawienie parametru do kolumny
+    do{
+    //mnożenie
+    inkrementacja dla kolumny
+    } while ()
+
+    //new line
+    //inkrementacja dla wierszy
+    } while()
+     */
+    @GetMapping("/zadanie11b")
+    public String zadanie11b(){
+        return kalkulatorService.zadanie11b();
+    }
+// region Zadanie 11c
+    /*
+    Napisać program, który przy pomocy pętli while przekaże nam wyniki tabliczki mnożenia od 1 do 100
+    Potrzebujemy 2 pętle while
+    while (){ // wiersze
+    //pierwotne ustawienie parametru dla kolumny
+    while () {//kolumny
+    }
+    // new line
+    //inkrementacja dla wierszy
+    }
+     */
+    @GetMapping("/zadanie11c")
+    public String zadanie11c(){
+        return kalkulatorService.zadanie11c();
+    }
+}
