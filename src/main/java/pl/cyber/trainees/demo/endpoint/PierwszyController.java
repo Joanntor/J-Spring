@@ -39,6 +39,7 @@ public class PierwszyController {        // zadaniem klasy komunikacja z zewnąt
    // PersonRequest
     // Utworzyć metody REST do tworzenia użytkownika, zmiany jego danych oraz jego pobierania
     // Imie, nazwisko, date urodzenia, miasto zamieszkania, płeć
+   /*
     @GetMapping("/person")
     public PersonDTO getPerson(@RequestBody final PersonRequest request) {
         return service.getPerson(request);
@@ -50,6 +51,7 @@ public class PierwszyController {        // zadaniem klasy komunikacja z zewnąt
         service.updatePerson(request);
 
     }
+    */
 
 }
 

@@ -57,12 +57,11 @@ public class PersonService {
         return PersonDTO.builder().build();
     }
 
-    public void updatePerson(final PersonRequest request) {
-        for (Person element: personList) {
-            if (element.getImie().equals(request.getImie())
-                && element.getNazwisko().equals(request.getNazwisko())
-                && element.getDataUrodzenia().
-
+ //   public void updatePerson(final PersonRequest request) {
+  //      for (Person element: personList) {
+  //          if (element.getImie().equals(request.getImie())
+  //              && element.getNazwisko().equals(request.getNazwisko())
+   //             && element.getDataUrodzenia().
+//
         }
-    }
-}
+
