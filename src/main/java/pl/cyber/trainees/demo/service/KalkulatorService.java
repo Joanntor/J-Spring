@@ -1,10 +1,14 @@
 package pl.cyber.trainees.demo.service;
 
 import org.springframework.stereotype.Service;
+import pl.cyber.trainees.demo.dto.IntegerRequest;
 import pl.cyber.trainees.demo.dto.RownanieKwRequest;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 @Service
 public class KalkulatorService {
@@ -146,9 +150,10 @@ public class KalkulatorService {
             return "Dwa pierwiastki. Wynik x1: " + df.format(x1) + "x2: " + df.format(x2);
         }
     }
-// egzamin
-    public String zadanie10a(){
-     //   Integer y = 0;
+
+    // egzamin
+    public String zadanie10a() {
+        //   Integer y = 0;
 
 /*        String result = "Program oblicza wartość funkcji y = 3x, dla x zmieniającego się od 0 do 10.\n";
 
@@ -165,25 +170,25 @@ public class KalkulatorService {
 
         StringBuilder result = new StringBuilder("Program oblicza wartość funkcji y = 3x, dla x zmieniającego się od 0 do 10.\n");
 
-        for(int x = 0; x <= 10; x++){
-            y = 3*x;
-            result.append("x=").append(x).append("\t " ).append( "y= ").append(y).append("\n");
+        for (int x = 0; x <= 10; x++) {
+            y = 3 * x;
+            result.append("x=").append(x).append("\t ").append("y= ").append(y).append("\n");
 
         }
         return result.toString();
 
     }
 
-    public String zadanie10b(){
+    public String zadanie10b() {
         Integer y = 0;
         Integer x = 0;
-        String result = "Program oblicza wartość funkcji y = 3x, dla x zmieniającego się od 0 do 10"+
+        String result = "Program oblicza wartość funkcji y = 3x, dla x zmieniającego się od 0 do 10" +
                 "Za pomocą pętli do...while\n";
         do {
-            y=3*x;
-            result += "x = " + x + "\t" + "y = " +y + "\n";
+            y = 3 * x;
+            result += "x = " + x + "\t" + "y = " + y + "\n";
             x++;
-        } while (x<=10);
+        } while (x <= 10);
         return result;
     }
 
@@ -195,7 +200,7 @@ public class KalkulatorService {
                 "Przy pomocy pętli while\n";
 
         while (x <= 10) {
-            y = 3*x;
+            y = 3 * x;
             result += "X = " + x + "\t" + "y = " + y + "\n";
             x++;
             // result += to to samo co result = result +
@@ -203,7 +208,7 @@ public class KalkulatorService {
         return result;
     }
 
-    public String zadanie11a(){
+    public String zadanie11a() {
 
         Integer n = 10;
 
@@ -211,16 +216,16 @@ public class KalkulatorService {
 
         for (int wiersz = 1; wiersz <= n; wiersz++) {
             for (int kolumna = 1; kolumna <= n; kolumna++) {
-                result += wiersz*kolumna;
+                result += wiersz * kolumna;
                 result += "\t";
             }
             result += "\n";
         }
         return result;
 
-        }
+    }
 
-    public String zadanie11aa(){
+    public String zadanie11aa() {
 
         Integer w = 20;
         Integer k = 15;
@@ -229,7 +234,7 @@ public class KalkulatorService {
 
         for (int wiersz = 1; wiersz <= w; wiersz++) {
             for (int kolumna = 1; kolumna <= k; kolumna++) {
-                result += wiersz*kolumna;
+                result += wiersz * kolumna;
                 result += "\t";
             }
             result += "\n";
@@ -240,28 +245,28 @@ public class KalkulatorService {
 
     public String zadanie11b() {
 
-            Integer k = 10;
-            Integer w = 20;
-            Integer wiersz = 1;
-            Integer kolumna = 1;
+        Integer k = 10;
+        Integer w = 20;
+        Integer wiersz = 1;
+        Integer kolumna = 1;
 
-            String result = "Program wyświetla tabliczkę mnożenia dla liczb od 1 do 200. \n Przy użyciu pętli do " +
-                    "... while" +
-                    "\n\n";
+        String result = "Program wyświetla tabliczkę mnożenia dla liczb od 1 do 200. \n Przy użyciu pętli do " +
+                "... while" +
+                "\n\n";
 
+        do {
+            kolumna = 1;
             do {
-                kolumna = 1;
-                do {
-                    result += wiersz * kolumna;
-                    result += "\t";
-                    kolumna ++;
-                }while(kolumna <= k);
-                result += "\n";
-                wiersz ++;
-            } while (wiersz <= w);
+                result += wiersz * kolumna;
+                result += "\t";
+                kolumna++;
+            } while (kolumna <= k);
+            result += "\n";
+            wiersz++;
+        } while (wiersz <= w);
 
-            return result;
-        }
+        return result;
+    }
 
     public String zadanie11c() {
         Integer k = 10;
@@ -272,10 +277,10 @@ public class KalkulatorService {
         String result = "Program wyświetla tabliczkę mnożenia " +
                 "dla liczb od 1 do 200. \n Przy użyciu pętli while \n\n";
 
-        while(wiersz <= w) {
+        while (wiersz <= w) {
             kolumna = 1;
-            while(kolumna <= k){
-                result += wiersz*kolumna;
+            while (kolumna <= k) {
+                result += wiersz * kolumna;
                 result += "\t";
                 kolumna++;
             }
@@ -285,7 +290,124 @@ public class KalkulatorService {
 
         return result;
     }
+
+    public String zadanie10d(final IntegerRequest request) {
+        Integer y = 0;
+        StringBuilder result = new StringBuilder("Program oblicza wartość funkcji y = 3x dla x zmieniającego się" +
+                "od 0 do wartości podanej przez użytkownika. \n");
+
+        for (int x = 0; x <= request.getParametrA(); x++) {
+            y = 3 * x;
+
+            result.append("x = ").append(x)
+                    .append("\t")
+                    .append("y = ").append(y)
+                    .append("\n");
+
+        }
+
+        return result.toString();
+    }
+
+    public String zadanie10e(final IntegerRequest request) {
+        Integer y = 0;
+        Integer x = 0;
+
+        StringBuilder result = new StringBuilder("Program oblicza wartość funkcji y = 3x. ");
+
+        do {
+            y = 3 * x;
+            result.append("x = ").append(x)
+                    .append("\t")
+                    .append("y = ").append(y)
+                    .append("\n");
+            x++;
+
+        } while (x <= request.getParametrA());
+
+        return result.toString();
+
+    }
+
+    public String zadanie10f(final IntegerRequest request) {
+        Integer x = 0;
+
+        StringBuilder result = new StringBuilder("Program oblicza wartość funkcji y = 3x");
+
+        while (x <= request.getParametrA()) {
+            result.append("x = ").append(x)
+                    .append("\t")
+                    .append("y = ").append(3*x)
+                    .append("\n");
+
+            x++;
+        }
+            return result.toString();
+
+    }
+
+    public String zadanie12for(final IntegerRequest request) {
+
+        Random random = new Random();
+        Integer iloscLosowan = request.getParametrA();
+        List<Integer> listaLiczb = new ArrayList<>();
+
+        Integer min = 100;
+        Integer max = 0;
+        Integer suma = 0;
+        Double srednia = 0.0;
+
+        for (int i = 0; i <iloscLosowan; i ++){
+            listaLiczb.add(random.nextInt(100));
+        }
+        
+        //region petla for
+        /*
+        for (int i = 0; i <listaLiczb.size(); i++) {
+            Integer element = listaLiczb.get(i);
+
+            suma += element; //alternatywa -> suma = suma+element;
+
+            if (element <min){
+                min = element;
+            }
+            if (element > max) {
+                max = element;
+            }
+        }
+*/
+        //endregion
+        
+        // petla foreach
+
+        for (Integer element: listaLiczb) {       // pojedyncza wartość listy: zbiór
+            suma += element;
+
+            if (element <min) {
+                min = element;
+            }
+            if (element > max) {
+                max = element;
+            }
+        }
+
+        srednia = (double) suma / listaLiczb.size();
+//        //alternatywa
+//        srednia = Double.valueOf(suma / listaLiczb.size();
+
+        return "Dla listy: " + listaLiczb + "Min: " + min + "Max: " + max + "natomiast średnia liczby: " + srednia;
+
+        /*
+        jeżeli mamy konkatynację stringów :
+        String1 + string2  --> "string1string2"
+        "string1" + " string2" --> "string1 string2"
+        -string1 + " " + string2"--> "string1 string2"
+
+         */
+    }
 }
+
+
 
 
 

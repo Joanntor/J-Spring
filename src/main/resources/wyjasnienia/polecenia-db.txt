@@ -1,0 +1,126 @@
+select concat('a ', 'b ', 'c ', 'd');
+select concat('admin', 14, '@', 'gmail', '.', 'com');
+select concat('a', 'b', ' ', 'c', 'd');
+select concat('admin', NULL, 'admin');
+
+select 'admin' || ' ' || 'admin' as Result;
+select 'admin' || NULL as Result;
+
+select 5 + 3 as result;
+select now() as result;
+
+create table szkolenie (
+	id 			integer,
+	imie		varchar(255),
+	nazwisko	varchar(255),
+	primary key(id)
+);
+// dodawanie wartości
+insert into szkolenie (id, imie, nazwisko) values (1, 'Joanna', 'Tor-Martynow');
+
+select  * from szkolenie;
+select imie from szkolenie;
+
+select concat(imie, '', nazwisko) from szkolenie;
+select imie || '' || nazwisko from szkolenie;
+
+insert into szkolenie (id, imie, nazwisko) values (2, 'Anna', 'Kowalska');
+insert into szkolenie (id, imie, nazwisko) values (3, 'Marcin', 'Oko');
+insert into szkolenie (id, imie, nazwisko) values (4, 'Hanna', 'Arendt');
+insert into szkolenie (id, imie, nazwisko) values (5, 'Jakub', 'Bryk');
+insert into szkolenie (id, imie, nazwisko) values (6, 'Teresa', 'Adamek');
+
+select * from szkolenie where imie like '%ta';
+
+select * from szkolenie where lower imie like lower ('M%ta');  // lub upper
+
+// rozszerzenie kolumny
+alter table szkolenie add column miasto varchar (255);
+aktualizacja
+update szkolenie set miasto  = 'Wrocław' where id = 1;
+update szkolenie set miasto  = 'Kraków' where imie like '%ta';
+
+sortowanie
+select * from szkolenie order by nazwisko desc;
+
+asc - ascending (rosnąco)
+desc descending (malejąco)
+
+select * from szkolenie order by imie asc, nazwisko desc;
+- wtedy sirtuje najpierw imię, a w przypadku takich samych imion, będzie sortować po nazwisku rosnąco
+
+insert into przychody (id_uzytkownika, przychod)
+select * from przychody order by id_uzytkownika asc;  ---> wywoływanie podglądu
+VALUES
+(1, 800),
+(3, 100),
+(2, 5000),
+(5, 4000),
+(4, 200),
+(6, 560)
+
+SQL joins  - grafika obrazująca łączenie tabel
+łączenie tabel
+select *
+from szkolenie sz
+left join przychody prz
+on sz.id = cast(prz.id_uzytkownika as Integer);
+
+-- insert into przychody (id_uzytkownika, przychody)
+-- VALUES
+-- (1, 800),
+-- (3, 100),
+-- (2, 5000),
+-- (5, 4000),
+-- (4, 200),
+-- (6, 560);
+
+select * from przychody;
+select sz.imie, sz.nazwisko, prz.przychod
+from szkolenie sz
+left join przychody prz
+on sz.id = cast(prz.id_uzytkownika as Integer);
+
+alter table przychody   --- chcemy zmodyfikować tabelę przychody, ale jeszcze nie wiemy w jaki sposób
+alter column id_uzytkownika type integer --- modyfikacja kolumny
+using cast (id_uzytkownika as integer); --- weź to co jest w id uzytkownika i przekonwertuj na integer
+
+SELECT sz.imie, sz.nazwisko, prz.przychod
+from szkolenie sz
+left join przychody prz on sz.id = prz.id_uzytkownika
+where sz.id in (1,2, 3);
+--- where sz.id not in (1,2);
+--- where sz.id !=1 and sz.id !=2;
+
+SELECT sz.imie, sz.nazwisko, prz.przychod,
+LENGTH (sz.nazwisko) as dlugosc_nazwiska
+from szkolenie sz
+left join przychody prz on sz.id = prz.id_uzytkownika
+
+SELECT
+distinct sz.imie, sz.nazwisko, @(prz.przychod*-1) as modul,---@ to wartość bezwzględna
+--|/ 25.0   ---- pierwiastek
+-- ||/ pierwiastek 2 stopnia
+----2.0 ^3.0 --- potęga
+-- 5.0%4 -- pierwiastek
+ -- 5! --- silnia
+from szkolenie sz
+left join przychody prz on sz.id = prz.id_uzytkownika
+
+SELECT
+sz.miasto, sum(prz.przychod)
+from szkolenie sz
+left join przychody prz on sz.id = prz.id_uzytkownika
+where sz.id !=7
+group by sz.miasto
+;
+
+
+SELECT
+sz.miasto, sum(prz.przychod), count(sz.imie)
+from szkolenie sz
+left join przychody prz on sz.id = prz.id_uzytkownika
+where sz.id !=7
+group by sz.miasto
+HAVING count(sz.imie) > 0
+;

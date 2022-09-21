@@ -3,10 +3,7 @@ package pl.cyber.trainees.demo.endpoint;
 import lombok.RequiredArgsConstructor;
 import org.junit.platform.commons.util.PackageUtils;
 import org.springframework.web.bind.annotation.*;
-import pl.cyber.trainees.demo.dto.IntegerListRequest;
-import pl.cyber.trainees.demo.dto.OneStringRequest;
-import pl.cyber.trainees.demo.dto.RownanieKwRequest;
-import pl.cyber.trainees.demo.dto.StringRequest;
+import pl.cyber.trainees.demo.dto.*;
 import pl.cyber.trainees.demo.service.BasicsService;
 import pl.cyber.trainees.demo.service.KalkulatorService;
 
@@ -248,4 +245,54 @@ public class BasicController {
     public String zadanie11c(){
         return kalkulatorService.zadanie11c();
     }
-}
+
+    //region ZADANIE DOMOWE
+   /*
+ zadanie
+   Proszę zadanie 10 (a, b, c) przerobić tak, aby można było z zewnątrz podać parametr x oraz parametr do kiedy nasza pętla ma się wykonywać
+   Proszę aby nie wzorować się na dostępnych metodach.
+
+  */
+
+    @PostMapping("/zadanie10d")
+    public String zadanie10d(@RequestBody IntegerRequest request) {
+        return kalkulatorService.zadanie10d(request);
+    }
+
+    @PostMapping("/zadanie10e")
+    public String zadanie10e(@RequestBody IntegerRequest request) {
+        return kalkulatorService.zadanie10e(request);
+    }
+    @PostMapping("/zadanie10f")
+    public String zadanie10f(@RequestBody IntegerRequest request) {
+        return kalkulatorService.zadanie10f(request);
+
+
+ /*
+
+
+ Zadania dla chętnych:
+ 1)
+ Napisz program, który oblicza wartość x z równania ax+b = c. Wartości a, b i c należy podać poprzez PathVariable, RequestParam lub RequestBody.
+ Należy zabezpieczyć program na wypadek sytuacji, kiedy wprowadzona wartość 'a' będzie równa zero. Dla zmiennych a, b, c oraz x należy
+ przyjąć format wyświetlania ich na ekranie z dokładnością do dwóch miejsc
+ po przecinku
+
+ new DecimalFormal("#,##0.00")
+*/
+
+
+        /*
+
+
+ 2)
+ Napisz program, który za pomocą instrukcji (for, do ... while oraz while, tzn trzy różne rozwiązania)
+ znajduje największą i najmniejszą liczbę ze zbioru 'n' wylosowanych liczb całkowitych od 0 do 100
+ oraz oblicza średnią ze wszystkich wylosowanych liczb
+   */
+
+        @PostMapping("/zadanie12for")
+                public String zadanie12for(@RequestBody IntegerRequest request) {
+            return kalkulatorService.zadanie12for(request);
+        }
+}}
